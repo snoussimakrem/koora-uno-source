@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1120" />
+  <title>Koora UNO — Football Card Game</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:#f3f6ff;background:#0b1120;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#18345b 0%,#0b1120 55%)}button,input{font:inherit}button{cursor:pointer;border:0}button:disabled{cursor:not-allowed;opacity:.4}.shell{max-width:1180px;margin:auto;padding:24px 18px 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:23px}.logo{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:900;letter-spacing:-1px}.logo-mark{width:45px;height:45px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#2dd4bf,#2563eb);font-size:24px}.sub{color:#91a3c2;font-size:13px}.panel{background:#141f35;border:1px solid #293955;border-radius:19px;padding:22px;box-shadow:0 14px 45px #0002}.intro{max-width:650px;margin:35px auto;text-align:center}.intro h1{font-size:clamp(29px,5vw,50px);letter-spacing:-2px;margin:0 0 12px}.intro p{color:#b5c4dc;line-height:1.7}.stack{display:grid;gap:14px}.field{background:#0c172a;border:1px solid #3c4d6b;color:white;padding:13px 15px;border-radius:12px;width:100%;outline:none}.field:focus{border-color:#38bdf8}.btn{background:#2dd4bf;color:#041923;border-radius:12px;padding:12px 17px;font-weight:800;transition:transform .12s,filter .12s}.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.08)}.btn.secondary{background:#263752;color:#e9f2ff}.btn.danger{background:#7f263b;color:#fff}.btn.small{padding:8px 11px;font-size:12px}.actions{display:flex;gap:10px;flex-wrap:wrap}.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}.stat{background:#0d192c;border:1px solid #253751;padding:12px;border-radius:12px}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#203855;color:#b9deff;font-size:12px;font-weight:700}.badge.turn{background:#064e3b;color:#a7f3d0}.muted{color:#99aac3}.players{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}.player{border:1px solid #2b4061;background:#101c31;border-radius:14px;padding:13px}.player.active{border-color:#2dd4bf;box-shadow:inset 0 0 0 1px #2dd4bf}.tablearea{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;justify-items:center;gap:15px;background:radial-gradient(ellipse,#183a45,#12263b 60%,#102035);padding:23px;border-radius:22px;border:1px solid #295364;margin:16px 0}.hand{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:12px}.game-card{position:relative;aspect-ratio: .69;border-radius:14px;overflow:hidden;border:2px solid #4a5f80;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 7px;background:#1d3351;color:white;box-shadow:0 8px 17px #0005;min-width:0;text-align:center}.game-card.club{background:linear-gradient(155deg,#14385e,#0b1729)}.game-card.nationality{background:linear-gradient(155deg,#16704f,#123326)}.game-card.manager{background:linear-gradient(155deg,#67439a,#251b48)}.game-card.trophy{background:linear-gradient(155deg,#916425,#342311)}.game-card.achievement{background:linear-gradient(155deg,#187585,#123848)}.game-card.action{background:linear-gradient(155deg,#a53145,#421527)}.game-card.clickable:hover{transform:translateY(-7px);border-color:#2dd4bf}.game-card:disabled{opacity:.5}.game-card .type{font-size:9px;text-transform:uppercase;letter-spacing:1.3px;opacity:.85;font-weight:850}.game-card .art{width:70%;height:51%;object-fit:contain;filter:drop-shadow(0 3px 6px #0006)}.game-card .symbol{display:grid;place-items:center;font-size:42px;height:51%}.game-card .name{font-size:12px;font-weight:850;line-height:1.2;overflow-wrap:anywhere}.game-card .fallback{font-size:36px;display:none;align-items:center;justify-content:center;height:51%}.game-card .art.failed{display:none}.game-card .fallback.show{display:flex}.center-card{width:162px;max-width:100%;font-size:1.15em}.center-card .name{font-size:15px}.center-card .type{font-size:11px}.center-card .symbol{font-size:54px}.section-heading{font-size:17px;font-weight:850;margin:22px 0 12px}.note{font-size:12px;line-height:1.6;color:#a2b4ce}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e8fff8;color:#10362b;border-radius:12px;padding:12px 17px;font-size:13px;box-shadow:0 15px 45px #0009;z-index:99;max-width:92vw}.hidden{display:none!important}.flex-between{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.wait{font-size:22px;margin:5px 0}.room-code{font-size:26px;letter-spacing:4px;font-weight:900}.footer{color:#7084a5;font-size:12px;margin-top:27px;text-align:center}.deck-back{border:2px dashed #68819d;padding:15px;border-radius:13px;text-align:center;color:#bacde5}.rules{margin-top:20px;text-align:left;font-size:13px;line-height:1.7}.rules li{margin:5px 0}.divider{border:0;border-top:1px solid #283b55;margin:16px 0}@media(max-width:650px){.tablearea{grid-template-columns:1fr 1fr}.tablearea .middle{grid-column:1/-1;grid-row:1}.center-card{width:140px}.hand{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.game-card{padding:7px 4px}.game-card .name{font-size:10px}.shell{padding:14px 11px 38px}.panel{padding:15px}.two{grid-template-columns:1fr}}@media(min-width:651px){.hand{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="top"><div class="logo"><span class="logo-mark">⚽</span><div>KOORA <span style="color:#2dd4bf">UNO</span><div class="sub">Football knowledge, friends & strategy</div></div></div><span class="badge" id="networkBadge">Offline & online modes</span></header>
+  <main id="screen"><div class="panel stack" style="max-width:620px;margin:30px auto;text-align:center"><h2 style="margin:0">⚽ Koora UNO</h2><p style="color:#b5c4dc">To play online or offline, open this game in Safari or Chrome as a website. The iPhone document preview may block JavaScript, which the game needs.</p><p class="note">Deploy this single index.html file to Vercel, then open your Vercel URL in Safari. Offline pass-and-play works on the deployed page even without a multiplayer server.</p><noscript><strong>JavaScript is disabled in this viewer.</strong></noscript></div></main>
+  <div class="footer">70-card deck · Seven cards each · Football answers judged by your friends · Unofficial fan project</div>
+</div>
+<div class="toast hidden" id="toast"></div>
+<!--
+SINGLE-FILE DEPLOYMENT:
+1) Create a Firebase project at https://console.firebase.google.com/
+2) Add a Web app; copy its firebaseConfig values into FIREBASE_CONFIG below.
+3) Authentication > Sign-in method > enable Anonymous.
+4) Build > Realtime Database > Create Database. Copy databaseURL into config.
+5) Realtime Database > Rules: paste the following starter rules:
+   {
+     "rules": {
+       "rooms": {
+         "$room": {
+           ".read": "auth != null",
+           ".write": "auth != null && (!data.exists() || data.child('players').child(auth.uid).exists() || (newData.child('players').child(auth.uid).exists() && newData.child('status').val() === 'lobby'))",
+           ".validate": "newData.hasChildren(['status','players','host','code'])"
+         }
+       }
+     }
+   }
+   NOTE: These rules provide only a casual private-room prototype. They do not fully protect
+   secret hands or prevent a modified client from cheating. For public competitive play,
+   use server-validated moves and separate private player hands.
+6) Upload this index.html as the root of a GitHub repo, then import the repo into Vercel.
+   Framework preset: Other. Build command: EMPTY. Output directory: leave default.
+   The same file runs locally or on Vercel. Use the deployed HTTPS URL for sharing rooms.
+Logo sources: football-data.org crests for football clubs/competition badges;
+flagcdn.com for country flags; Wikipedia page thumbnail API for managers and selected trophies.
+Remote images need network access; offline gameplay works with fallback icons if logos were not cached.
+-->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+<script>
+'use strict';
+// ===================== CONFIGURATION =====================
+// Paste your Firebase web app config here to enable online rooms.
+// These public web-app settings are not secret; protect data using database rules.
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAsPjvqQ2MSOP2hJTHSZ2cZw4STP4UtdsA",
+  authDomain: "koora-uno.firebaseapp.com",
+  databaseURL: "https://koora-uno-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "koora-uno",
+  storageBucket: "koora-uno.firebasestorage.app",
+  messagingSenderId: "827569096183",
+  appId: "1:827569096183:web:95a3c340e3c7863f84daf2",
+  measurementId: "G-XTG2PMNJV7"
+};
+const HAS_FIREBASE = Boolean(FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.databaseURL && FIREBASE_CONFIG.projectId);
+
+// ===================== ALL 70 CARDS =====================
+// Club images: football-data.org documented crest URLs, indexed by their team IDs.
+const CLUBS = [
+  ['Manchester United',66],['Manchester City',65],['Liverpool',64],['Arsenal',57],
+  ['Chelsea',61],['Tottenham',73],['Newcastle',67],['Aston Villa',58],
+  ['Real Madrid',86],['Barcelona',81],['Atlético Madrid',78],['Sevilla',559],
+  ['Bayern Munich',5],['Borussia Dortmund',4],['Bayer Leverkusen',3],
+  ['Juventus',109],['Inter Milan',108],['AC Milan',98],['Napoli',113],['Roma',100],
+  ['Paris Saint-Germain',524],['Monaco',548],['Marseille',516],['Lille',521],
+  ['Benfica',1903],['Porto',503],['Ajax',674],['Sporting CP',498]
+].map(([name,id]) => ({type:'club',name,image:`https://crests.football-data.org/${id}.png`,fallback:'⚽'}));
+const NATIONALITIES = [
+  ['Brazil','br'],['Argentina','ar'],['France','fr'],['Portugal','pt'],['Spain','es'],
+  ['Germany','de'],['England','gb-eng'],['Italy','it'],['Morocco','ma'],['Tunisia','tn']
+].map(([name,code]) => ({type:'nationality',name,image:`https://flagcdn.com/w160/${code}.png`,fallback:'🌍'}));
+// Photos from Wikipedia API (a real portrait if available, with a fallback portrait symbol).
+const MANAGERS = [
+  ['Sir Alex Ferguson','Alex Ferguson'],['Pep Guardiola','Pep Guardiola'],
+  ['José Mourinho','José Mourinho'],['Carlo Ancelotti','Carlo Ancelotti'],
+  ['Jürgen Klopp','Jürgen Klopp'],['Zinedine Zidane','Zinedine Zidane'],
+  ['Arsène Wenger','Arsène Wenger'],['Antonio Conte','Antonio Conte']
+].map(([name,wiki]) => ({type:'manager',name,wiki,fallback:'🧑‍🏫'}));
+const TROPHIES = [
+  ['Champions League','UEFA Champions League','https://crests.football-data.org/CL.png'],
+  ['Europa League','UEFA Europa League','https://crests.football-data.org/EL.png'],
+  ['Premier League','Premier League','https://crests.football-data.org/PL.png'],
+  ['La Liga','La Liga','https://crests.football-data.org/PD.png'],
+  ['Serie A','Serie A','https://crests.football-data.org/SA.png'],
+  ['Bundesliga','Bundesliga','https://crests.football-data.org/BL1.png'],
+  ['Ligue 1','Ligue 1','https://crests.football-data.org/FL1.png'],
+  ['FIFA World Cup','FIFA World Cup',null],
+  ['UEFA Euro','UEFA European Championship',null],
+  ['Copa América','Copa América',null],
+  ['Africa Cup of Nations','Africa Cup of Nations',null],
+  ['AFC Asian Cup','AFC Asian Cup',null]
+].map(([name,wiki,image]) => ({type:'trophy',name,wiki,image,fallback:'🏆'}));
+const ACHIEVEMENTS = [
+  {type:'achievement',name:"Ballon d'Or",wiki:"Ballon d'Or",fallback:'🏅'},
+  {type:'achievement',name:"Ballon d'Or",wiki:"Ballon d'Or",fallback:'🏅'},
+  {type:'achievement',name:'Top Goalscorer',fallback:'⚽'},
+  {type:'achievement',name:'Golden Boot',wiki:'European Golden Shoe',fallback:'🥇'},
+  {type:'achievement',name:'Golden Boot',wiki:'European Golden Shoe',fallback:'🥇'},
+  {type:'achievement',name:'Goalkeeper',fallback:'🧤'}
+];
+const ACTIONS = [
+  ...Array.from({length:4},()=>({type:'action',name:'+2',fallback:'＋2'})),
+  ...Array.from({length:2},()=>({type:'action',name:'Red Card',fallback:'🟥'}))
+];
+const CARD_TEMPLATES = [...CLUBS,...NATIONALITIES,...MANAGERS,...TROPHIES,...ACHIEVEMENTS,...ACTIONS];
+if(CARD_TEMPLATES.length!==70) throw Error(`Incorrect deck size: ${CARD_TEMPLATES.length}`);
+const ALL_CARDS = CARD_TEMPLATES.map((c,i)=>({...c,id:'card-'+i}));
+
+// ===================== FAIR SHUFFLING =====================
+function randomInt(max){ // Rejection sampling prevents modulo bias.
+  if(!Number.isInteger(max)||max<1||max>4294967296) throw Error('Bad random bound');
+  const range=4294967296, limit=Math.floor(range/max)*max;
+  const array=new Uint32Array(1); let value;
+  do{ crypto.getRandomValues(array); value=array[0]; }while(value>=limit);
+  return value%max;
+}
+function shuffleCards(cards){ // Fisher–Yates: each ordering is equally likely.
+  const copy=[...cards];
+  for(let i=copy.length-1;i>0;i--){const j=randomInt(i+1);[copy[i],copy[j]]=[copy[j],copy[i]];}
+  return copy;
+}
+
+// ===================== STATE =====================
+// Certain iOS document previews block localStorage even when scripts are permitted.
+function safeStorageGet(key){try{return window.localStorage.getItem(key)}catch(e){return null}}
+function safeStorageSet(key,val){try{window.localStorage.setItem(key,val)}catch(e){/* unavailable in file viewer */}}
+
+const $=s=>document.querySelector(s);
+let app=null,auth=null,db=null,roomRef=null,roomListener=null;
+let uid='',nickname=safeStorageGet('koora-nickname')||'',roomCode='',room=null,practice=false,offlineMode=false,offlineReveal=false;
+let imageCache={},awaitingMove=false;
+function escapeHtml(str){return String(str??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function cleanName(str){return String(str||'').trim().slice(0,22)||'Player';}
+function notify(message){const e=$('#toast');e.textContent=message;e.classList.remove('hidden');clearTimeout(notify.timer);notify.timer=setTimeout(()=>e.classList.add('hidden'),3100);}
+function cardById(id){return ALL_CARDS.find(c=>c.id===id);}
+function currentCard(){return cardById(room?.activeCard);}
+function playerKeys(r=room){return r?.order||[];}
+function me(){return room?.players?.[uid];}
+function isTurn(){return room?.status==='playing' && room?.order?.[room.turn]===uid;}
+function codeFromURL(){return new URLSearchParams(location.search).get('room')?.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6)||'';}
+function roomCodeRandom(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';return Array.from({length:6},()=>chars[randomInt(chars.length)]).join('');}
+function nextTurn(s,steps=1){s.turn=(s.turn+steps)%s.order.length;}
+function drawOne(s,id){if(!s.deck?.length){ // Recycle previously played, non-active football cards.
+    const recycled=(s.discard||[]).filter(x=>x!==s.activeCard);
+    s.discard=[];
+    s.deck=shuffleCards(recycled);
+  }
+  if(s.deck.length){const c=s.deck.pop();s.hands[id].push(c);return true;}
+  return false;
+}
+function validatePlay(s,id,cardId){
+  if(s.status!=='playing'||s.order[s.turn]!==id)return 'Not your turn';
+  if(!s.hands?.[id]?.includes(cardId))return 'Card not in your hand';
+  const c=cardById(cardId),active=cardById(s.activeCard);
+  if(!c)return 'Unknown card';
+  if(c.type==='nationality'&&active?.type==='nationality')return 'Nationality cannot follow nationality';
+  return '';
+}
+function applyPlay(s,id,cardId,answer){
+  const c=cardById(cardId),error=validatePlay(s,id,cardId);
+  if(error)return error;
+  s.hands[id]=s.hands[id].filter(x=>x!==cardId);
+  if(c.type==='action'){
+    const next=s.order[(s.turn+1)%s.order.length];
+    if(c.name==='+2'){drawOne(s,next);drawOne(s,next);s.message=`${s.players[id].name} played +2: ${s.players[next].name} drew two cards and missed a turn.`;}
+    else s.message=`${s.players[id].name} played a Red Card: ${s.players[next].name} missed a turn.`;
+    s.discard.push(cardId);
+    nextTurn(s,2); // Action cards do not replace the football question card.
+  }else{
+    s.discard.push(s.activeCard);
+    s.activeCard=cardId;
+    s.message=`${s.players[id].name} played ${c.name}${answer?' — '+answer:''}. Players judge the answer.`;
+    nextTurn(s,1);
+  }
+  if(s.hands[id].length===0){s.status='finished';s.winner=id;s.message=`🏆 ${s.players[id].name} wins Koora UNO!`;}
+  s.moves=(s.moves||0)+1;
+  s.lastMoveAt=Date.now();
+  return '';
+}
+function freshMatch(s){
+  if(s.order.length<2)throw Error('At least 2 players required');
+  const shuffled=shuffleCards(ALL_CARDS.map(c=>c.id));
+  s.hands={};for(const id of s.order)s.hands[id]=[];
+  for(let j=0;j<7;j++)for(const id of s.order)s.hands[id].push(shuffled.pop());
+  let ix=shuffled.findIndex(id=>cardById(id)?.type==='club');
+  if(ix<0)throw Error('Missing starting club');
+  s.activeCard=shuffled.splice(ix,1)[0];
+  s.deck=shuffled;s.discard=[];s.turn=randomInt(s.order.length);
+  s.status='playing';s.winner=null;s.moves=0;s.lastMoveAt=Date.now();
+  s.message='Each player has 7 cards. Say a footballer connecting the two cards before playing!';
+}
+async function setupFirebase(){
+  if(!HAS_FIREBASE){uid='demo-'+Math.random().toString(36).slice(2);render();return;}
+  try{
+    app=firebase.initializeApp(FIREBASE_CONFIG);auth=firebase.auth();db=firebase.database();
+    await auth.signInAnonymously();uid=auth.currentUser.uid;
+    $('#networkBadge').textContent='🟢 Online rooms enabled';
+    render();const fromURL=codeFromURL();if(fromURL)$('#roomCodeInput').value=fromURL;
+  }catch(err){console.error(err);notify('Firebase connection failed: '+err.message);render();}
+}
+function detach(){if(roomRef&&roomListener)roomRef.off('value',roomListener);roomRef=null;roomListener=null;}
+function listenTo(code){
+  detach();roomCode=code;roomRef=db.ref('rooms/'+code);
+  roomListener=snap=>{
+    const value=snap.val();if(!value){room=null;roomCode='';detach();notify('Room no longer exists');render();return;}
+    room=value;render();
+  };roomRef.on('value',roomListener,err=>notify(err.message));
+  history.replaceState({},'',location.pathname+'?room='+code);
+}
+async function createRoom(){
+  if(!HAS_FIREBASE||!db||!uid)return notify('Configure Firebase first. You can use Practice Mode now.');
+  nickname=cleanName($('#nickname')?.value);safeStorageSet('koora-nickname',nickname);
+  for(let attempt=0;attempt<5;attempt++){
+    const code=roomCodeRandom(),ref=db.ref('rooms/'+code);
+    const data={code,host:uid,status:'lobby',createdAt:Date.now(),players:{[uid]:{name:nickname,joinedAt:Date.now()}},order:[uid],message:'Waiting for friends...'};
+    const result=await ref.transaction(old=>old===null?data:undefined,undefined,false);
+    if(result.committed){listenTo(code);return;}
+  }notify('Could not create a unique room; try again.');
+}
+async function joinRoom(){
+  if(!HAS_FIREBASE||!db||!uid)return notify('Configure Firebase to play online.');
+  nickname=cleanName($('#nickname')?.value);safeStorageSet('koora-nickname',nickname);
+  const code=String($('#roomCodeInput')?.value||'').trim().toUpperCase();
+  if(!/^[A-Z0-9]{6}$/.test(code))return notify('Enter a valid 6-character room code');
+  let result=await db.ref('rooms/'+code).transaction(s=>{
+    if(!s||s.status!=='lobby'&&!s.players?.[uid])return;
+    if(s.players?.[uid])return s;
+    if(s.order.length>=6)return;
+    s.players[uid]={name:nickname,joinedAt:Date.now()};s.order.push(uid);return s;
+  },undefined,false);
+  if(!result.committed)return notify('Room is missing, full, or already playing.');
+  listenTo(code);
+}
+async function updateRoom(change){
+  if(awaitingMove)return;
+  awaitingMove=true;
+  try{
+    if(practice||offlineMode){
+      const snapshot=structuredClone(room),reason=change(snapshot);
+      if(typeof reason==='string'&&reason)return notify(reason);
+      room=snapshot;
+      if(offlineMode){uid=room.order[room.turn];offlineReveal=false;}
+      render();return;
+    }
+    if(!roomRef)return notify('Not connected to a room');
+    let rejection='';
+    const res=await roomRef.transaction(s=>{
+      if(!s||!s.players?.[uid]){rejection='You are not in this room';return;}
+      const reason=change(s);
+      if(typeof reason==='string'&&reason){rejection=reason;return;}
+      return s;
+    },undefined,false);
+    if(!res.committed)notify(rejection||'Action could not be completed; try again.');
+  }catch(e){notify('Network error: '+e.message);}
+  finally{awaitingMove=false;}
+}
+function practiceStart(){
+  detach();offlineMode=false;practice=true;uid='practice-human';nickname=cleanName($('#nickname')?.value)||'You';
+  roomCode='PRACTICE';room={code:roomCode,status:'lobby',host:uid,players:{
+    [uid]:{name:nickname},bot1:{name:'Friend 2 (demo)'},bot2:{name:'Friend 3 (demo)'}
+  },order:[uid,'bot1','bot2'],message:''};
+  freshMatch(room);room.turn=0;room.message='Practice mode: use “Demo opponents play” to advance other players. It is not online multiplayer.';
+  render();
+}
+function simulateDemoTurn(){
+  updateRoom(s=>{
+    if(s.status!=='playing')return 'Game is finished';
+    if(s.order[s.turn]===uid)return 'It is your turn';
+    const who=s.order[s.turn],options=s.hands[who].filter(cid=>!validatePlay(s,who,cid));
+    if(options.length){applyPlay(s,who,options[randomInt(options.length)],'demo answer (not verified)');}
+    else {drawOne(s,who);nextTurn(s);s.message=s.players[who].name+' drew a card.';}
+  });
+}
+function leaveRoom(){detach();room=null;roomCode='';practice=false;offlineMode=false;offlineReveal=false;history.replaceState({},'',location.pathname);render();}
+function offlineStart(){
+  const names=String($('#offlineNames')?.value||'').split(',').map(n=>n.trim()).filter(Boolean).map(cleanName);
+  if(names.length<2||names.length>6)return notify('Enter 2 to 6 names, separated by commas.');
+  detach();practice=false;offlineMode=true;offlineReveal=false;roomCode='OFFLINE';
+  const players={},order=[];names.forEach((name,i)=>{const id='local-'+i;players[id]={name};order.push(id);});
+  room={code:'OFFLINE',status:'lobby',host:order[0],players,order,message:''};
+  freshMatch(room);uid=order[room.turn];room.message='Pass the device to the next player. Tap Reveal hand privately to take your turn.';
+  render();
+}
+function copyInvite(){let link=location.origin+location.pathname+'?room='+roomCode;navigator.clipboard?.writeText(link).then(()=>notify('Invitation link copied')).catch(()=>prompt('Copy this link:',link));}
+
+// ===================== CARD IMAGE LOOKUP =====================
+// Wikipedia image lookup is optional enhancement. Only images returned for the correct
+// Wikipedia article are used; if unavailable a clean text/icon fallback remains visible.
+const wikiPromises=new Set();
+function loadWikiImage(card){
+  if(!card?.wiki||imageCache[card.wiki]!==undefined||wikiPromises.has(card.wiki))return;
+  wikiPromises.add(card.wiki);
+  const url='https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&piprop=thumbnail&pithumbsize=320&titles='+encodeURIComponent(card.wiki);
+  fetch(url).then(r=>r.json()).then(data=>{
+    const pages=Object.values(data.query?.pages||{});
+    imageCache[card.wiki]=pages[0]?.thumbnail?.source||'';
+    if(room)render();
+  }).catch(()=>{imageCache[card.wiki]='';}).finally(()=>wikiPromises.delete(card.wiki));
+}
+function cardHTML(id,{click=false,center=false}={}){
+  const c=cardById(id);if(!c)return '';
+  if(!c.image&&c.wiki)loadWikiImage(c);
+  const src=c.image||imageCache[c.wiki]||'';
+  const enabled=click&&isTurn()&&!validatePlay(room,uid,id);
+  const typeLabel=({club:'Club',nationality:'Nationality',manager:'Manager',trophy:'Trophy winner',achievement:'Achievement',action:'Action'})[c.type];
+  const art=src?`<img class="art" src="${escapeHtml(src)}" alt="${escapeHtml(c.name)}" loading="lazy" onerror="this.classList.add('failed');this.nextElementSibling.classList.add('show')"><span class="fallback">${escapeHtml(c.fallback)}</span>`:`<div class="symbol">${escapeHtml(c.fallback)}</div>`;
+  return `<button type="button" class="game-card ${c.type} ${enabled?'clickable':''} ${center?'center-card':''}" ${enabled?`data-play="${c.id}"`: 'disabled'} aria-label="${escapeHtml(c.name)}"><span class="type">${typeLabel}</span>${art}<span class="name">${escapeHtml(c.name)}</span></button>`;
+}
+function homeHTML(){return `<div class="intro"><h1>Football knowledge.<br><span style="color:#2dd4bf">One card at a time.</span></h1><p>Connect football clubs, countries, managers and trophies. Say a player who matches both cards. Your friends judge the answer, while the website handles the deck and turns.</p><div class="panel stack" style="text-align:left;margin-top:22px"><label class="sub" for="nickname">Your nickname</label><input class="field" id="nickname" maxlength="22" placeholder="Enter a name" value="${escapeHtml(nickname)}"/><div class="actions"><button class="btn" id="createBtn">Create online room</button><button class="btn secondary" id="practiceBtn">Try solo practice</button></div><hr class="divider"><div class="stat stack"><b>📱 Offline pass-and-play (no server)</b><p class="note" style="margin:0">Play with 2–6 friends on one phone or computer. Pass the device between turns; hands stay hidden.</p><label class="sub" for="offlineNames">Player names (comma separated)</label><input class="field" id="offlineNames" value="Player 1, Player 2, Player 3" maxlength="160" placeholder="Ali, Sam, Noor"/><button class="btn" id="offlineBtn">Start offline game</button></div><hr class="divider"><label class="sub" for="roomCodeInput">Join a friend's room</label><div class="actions"><input class="field" style="flex:1;min-width:140px" id="roomCodeInput" maxlength="6" placeholder="Room code" value="${escapeHtml(codeFromURL())}"/><button class="btn secondary" id="joinBtn">Join</button></div>${!HAS_FIREBASE?'<p class="note">⚠️ Multiplayer setup needed: add your Firebase project configuration in this HTML file. Practice mode works immediately.</p>':''}</div><div class="rules"><strong>Quick rules</strong><ol><li>Everyone begins with seven cards. The host starts a room of 2–6 players.</li><li>Play a card and say a footballer connecting it to the current card. Friends decide if the answer is valid.</li><li>Nationality → nationality is not allowed.</li><li>Red Card skips the next player. +2 makes the next player draw two and skip (configurable house rule).</li><li>If you cannot play, draw one card and pass. First to empty their hand wins.</li></ol></div></div>`;}
+function lobbyHTML(){const isHost=room.host===uid;return `<div class="panel stack"><div class="flex-between"><div><div class="sub">ONLINE ROOM</div><div class="room-code">${escapeHtml(room.code)}</div></div><div class="actions"><button class="btn secondary small" id="copyBtn">Copy invite link</button><button class="btn secondary small" id="leaveBtn">Leave screen</button></div></div><p class="muted">Invite friends to join using this code or the shared link. ${room.order.length}/6 players connected.</p><div class="players">${room.order.map(id=>`<div class="player"><b>👤 ${escapeHtml(room.players[id]?.name)}</b><div class="sub">${id===room.host?'Host':'Player'}</div></div>`).join('')}</div><div class="actions">${isHost?`<button class="btn" id="startBtn" ${room.order.length<2?'disabled':''}>Shuffle & deal 7 cards</button>`:'<span class="badge">Waiting for host to start</span>'}</div><p class="note">Each game reshuffles all 70 cards. The starting table card is always a club.</p></div>`;}
+function gameHTML(){
+  const names=room.order.map((id,i)=>({id,seat:i,p:room.players[id]}));const myHand=room.hands?.[uid]||[];
+  const turnId=room.order[room.turn];const winner=room.players?.[room.winner]?.name;
+  if(offlineMode && !offlineReveal && room.status==='playing'){
+    return `<div class="panel stack" style="max-width:520px;margin:48px auto;text-align:center"><div class="sub">OFFLINE · PASS & PLAY</div><div style="font-size:58px">🔒</div><h2 style="margin:0">${escapeHtml(room.players[turnId]?.name)}'s turn</h2><p class="muted">Pass the device to this player before revealing their private cards.</p><button class="btn" id="revealBtn">Reveal my hand</button><button class="btn secondary" id="leaveBtn">Exit game</button><span class="sub">${room.deck?.length||0} cards in draw pile · ${room.moves||0} moves played</span></div>`;
+  }
+  return `<div class="flex-between"><div><span class="badge">${offlineMode?'Offline match':practice?'Solo practice':'Room '+escapeHtml(room.code)}</span> <span class="badge">Deck: ${room.deck?.length||0} cards</span></div><div class="actions">${!practice&&!offlineMode?'<button id="copyBtn" class="btn secondary small">Invite</button>':''}<button id="leaveBtn" class="btn secondary small">Exit</button></div></div>
+  <div class="section-heading">Players</div><div class="players">${names.map(({id,p})=>`<div class="player ${id===turnId&&room.status==='playing'?'active':''}"><div class="flex-between"><b>${escapeHtml(p?.name||'Player')}</b><span class="badge ${id===turnId&&room.status==='playing'?'turn':''}">${id===turnId&&room.status==='playing'?'TURN':(room.hands?.[id]?.length||0)+' cards'}</span></div><div class="sub">${room.hands?.[id]?.length||0} cards ${id===uid?'· You':''}</div></div>`).join('')}</div>
+  <div class="tablearea"><div><div class="sub">DRAW PILE</div><div class="deck-back"><div style="font-size:35px">🂠</div><b>${room.deck?.length||0} cards</b></div></div><div class="middle"><div class="sub" style="text-align:center;margin-bottom:10px">CURRENT FOOTBALL CARD</div>${cardHTML(room.activeCard,{center:true})}</div><div><div class="sub">UP NEXT</div><div class="wait">${room.status==='finished'?'🏆':escapeHtml(room.players[turnId]?.name)}</div><div class="sub">${room.status==='finished'?'Game complete':'Say a connecting player'}</div></div></div>
+  <div class="panel"><div class="flex-between"><div><b>${room.status==='finished'?'🏆 '+escapeHtml(winner)+' wins!':isTurn()?'🟢 Your turn':'Waiting: '+escapeHtml(room.players[turnId]?.name)+' plays'}</b><div class="sub" style="margin-top:7px">${escapeHtml(room.message||'')}</div></div><div class="actions">${room.status==='playing'&&isTurn()?'<button id="drawBtn" class="btn secondary">Draw 1 & pass</button>':''}${practice&&room.status==='playing'&&!isTurn()?'<button id="demoNextBtn" class="btn secondary">Demo opponents play</button>':''}${room.status==='finished'&&(room.host===uid||practice||offlineMode)?'<button id="rematchBtn" class="btn">Shuffle & rematch</button>':''}</div></div></div>
+  <div class="section-heading">Your cards · ${myHand.length}</div><div class="hand">${myHand.map(id=>cardHTML(id,{click:true})).join('')}</div><p class="note">Play any allowed card, name the footballer aloud, and let your friends verify. This site does not fact-check answers. Nationality cannot follow nationality. Action cards leave the football card in the center unchanged.</p>`;
+}
+function render(){
+  $('#screen').innerHTML=room?(room.status==='lobby'?lobbyHTML():gameHTML()):homeHTML();
+  $('#createBtn')?.addEventListener('click',()=>createRoom().catch(e=>notify(e.message)));
+  $('#practiceBtn')?.addEventListener('click',practiceStart);
+  $('#offlineBtn')?.addEventListener('click',offlineStart);
+  $('#revealBtn')?.addEventListener('click',()=>{offlineReveal=true;render();});
+  $('#joinBtn')?.addEventListener('click',()=>joinRoom().catch(e=>notify(e.message)));
+  $('#roomCodeInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')$('#joinBtn').click();});
+  $('#startBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.host!==uid||s.status!=='lobby')return 'Only the host can start';freshMatch(s);}));
+  $('#rematchBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.host!==uid&& !practice && !offlineMode)return 'Only the host can restart';freshMatch(s);}));
+  $('#drawBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.order[s.turn]!==uid||s.status!=='playing')return 'Not your turn';const drawn=drawOne(s,uid);nextTurn(s);s.message=drawn?s.players[uid].name+' drew one card and passed.':'Draw pile is empty. Turn passed.';}));
+  $('#demoNextBtn')?.addEventListener('click',simulateDemoTurn);
+  $('#copyBtn')?.addEventListener('click',copyInvite);
+  $('#leaveBtn')?.addEventListener('click',leaveRoom);
+  document.querySelectorAll('[data-play]').forEach(btn=>btn.addEventListener('click',()=>{
+    const cardId=btn.dataset.play,c=cardById(cardId);
+    const ask=c.type!=='action';
+    const answer=ask?prompt(`Name a footballer connecting ${currentCard()?.name} and ${c.name}.\n\nFriends verify your answer. Enter the name (optional), or cancel to keep the card:`,''):'';
+    if(answer===null)return;
+    updateRoom(s=>applyPlay(s,uid,cardId,String(answer||'').trim().slice(0,60)));
+  }));
+}
+try { render(); setupFirebase(); }
+catch (err) {
+  console.error('Koora UNO initialization:', err);
+  const screen=document.getElementById('screen');
+  if(screen)screen.innerHTML='<div class="panel" style="margin:30px auto;max-width:600px"><h2>Game could not start in this viewer</h2><p>Open the hosted game in Safari or Chrome. If using an iPhone file preview, JavaScript or browser storage may be restricted.</p></div>';
+}
+</script>
+</body>
+</html>
