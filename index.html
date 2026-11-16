@@ -150,7 +150,11 @@ function isTurn(){return room?.status==='playing' && room?.order?.[room.turn]===
 function codeFromURL(){return new URLSearchParams(location.search).get('room')?.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6)||'';}
 function roomCodeRandom(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';return Array.from({length:6},()=>chars[randomInt(chars.length)]).join('');}
 function nextTurn(s,steps=1){s.turn=(s.turn+steps)%s.order.length;}
-function drawOne(s,id){if(!s.deck?.length){ // Recycle previously played, non-active football cards.
+function drawOne(s,id){
+  if(!Array.isArray(s.discard))s.discard=[];
+  if(!Array.isArray(s.deck))s.deck=[];
+  if(!Array.isArray(s.hands?.[id]))return false;
+  if(!s.deck.length){ // Recycle previously played, non-active football cards.
     const recycled=(s.discard||[]).filter(x=>x!==s.activeCard);
     s.discard=[];
     s.deck=shuffleCards(recycled);
@@ -167,6 +171,9 @@ function validatePlay(s,id,cardId){
   return '';
 }
 function applyPlay(s,id,cardId,answer){
+  // Firebase Realtime Database removes empty arrays when saving a room.
+  // Restore discard before adding the first played card.
+  if(!Array.isArray(s.discard))s.discard=[];
   const c=cardById(cardId),error=validatePlay(s,id,cardId);
   if(error)return error;
   s.hands[id]=s.hands[id].filter(x=>x!==cardId);
