@@ -232,14 +232,37 @@ async function joinRoom(){
   nickname=cleanName($('#nickname')?.value);safeStorageSet('koora-nickname',nickname);
   const code=String($('#roomCodeInput')?.value||'').trim().toUpperCase();
   if(!/^[A-Z0-9]{6}$/.test(code))return notify('Enter a valid 6-character room code');
-  let result=await db.ref('rooms/'+code).transaction(s=>{
-    if(!s||s.status!=='lobby'&&!s.players?.[uid])return;
-    if(s.players?.[uid])return s;
-    if(s.order.length>=6)return;
-    s.players[uid]={name:nickname,joinedAt:Date.now()};s.order.push(uid);return s;
-  },undefined,false);
-  if(!result.committed)return notify('Room is missing, full, or already playing.');
-  listenTo(code);
+  const ref=db.ref('rooms/'+code);
+  try{
+    // Read the room before running a transaction. Without this initial read,
+    // Firebase may invoke the updater against an empty local cache, causing a
+    // valid invitation to be incorrectly rejected as a full/missing room.
+    const initial=await ref.once('value');
+    const existing=initial.val();
+    if(!existing)return notify('Room '+code+' does not exist. Ask your friend for a new invite link.');
+    if(existing.players?.[uid]){listenTo(code);return;}
+    if(existing.status!=='lobby')return notify('This match already started. Ask the host to create a new room.');
+    if((existing.order||[]).length>=6)return notify('Room full: the maximum is 6 players.');
+    const result=await ref.transaction(s=>{
+      if(!s)return; // Room deleted between read and transaction.
+      if(s.players?.[uid])return s;
+      if(s.status!=='lobby'||(s.order||[]).length>=6)return;
+      if(!s.players)s.players={};
+      s.players[uid]={name:nickname,joinedAt:Date.now()};
+      if(!Array.isArray(s.order))s.order=[];
+      s.order.push(uid);
+      return s;
+    },undefined,false);
+    if(!result.committed){
+      const latest=(await ref.once('value')).val();
+      if(!latest)return notify('This room no longer exists.');
+      if(latest.players?.[uid]){listenTo(code);return;}
+      if(latest.status!=='lobby')return notify('This match already started. Ask the host for a new room.');
+      if((latest.order||[]).length>=6)return notify('Room full: the maximum is 6 players.');
+      return notify('Could not join room. Please retry.');
+    }
+    listenTo(code);
+  }catch(err){console.error('Join room failed',err);notify('Could not join: '+(err?.message||'Firebase error'));}
 }
 async function updateRoom(change){
   if(awaitingMove)return;
