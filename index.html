@@ -228,41 +228,39 @@ async function createRoom(){
   }notify('Could not create a unique room; try again.');
 }
 async function joinRoom(){
-  if(!HAS_FIREBASE||!db||!uid)return notify('Configure Firebase to play online.');
+  if(!HAS_FIREBASE||!db||!uid)return notify('Firebase is not connected. Please refresh and try again.');
   nickname=cleanName($('#nickname')?.value);safeStorageSet('koora-nickname',nickname);
   const code=String($('#roomCodeInput')?.value||'').trim().toUpperCase();
   if(!/^[A-Z0-9]{6}$/.test(code))return notify('Enter a valid 6-character room code');
   const ref=db.ref('rooms/'+code);
   try{
-    // Read the room before running a transaction. Without this initial read,
-    // Firebase may invoke the updater against an empty local cache, causing a
-    // valid invitation to be incorrectly rejected as a full/missing room.
-    const initial=await ref.once('value');
-    const existing=initial.val();
-    if(!existing)return notify('Room '+code+' does not exist. Ask your friend for a new invite link.');
-    if(existing.players?.[uid]){listenTo(code);return;}
-    if(existing.status!=='lobby')return notify('This match already started. Ask the host to create a new room.');
-    if((existing.order||[]).length>=6)return notify('Room full: the maximum is 6 players.');
-    const result=await ref.transaction(s=>{
-      if(!s)return; // Room deleted between read and transaction.
-      if(s.players?.[uid])return s;
-      if(s.status!=='lobby'||(s.order||[]).length>=6)return;
-      if(!s.players)s.players={};
-      s.players[uid]={name:nickname,joinedAt:Date.now()};
-      if(!Array.isArray(s.order))s.order=[];
-      s.order.push(uid);
-      return s;
-    },undefined,false);
-    if(!result.committed){
-      const latest=(await ref.once('value')).val();
-      if(!latest)return notify('This room no longer exists.');
-      if(latest.players?.[uid]){listenTo(code);return;}
-      if(latest.status!=='lobby')return notify('This match already started. Ask the host for a new room.');
-      if((latest.order||[]).length>=6)return notify('Room full: the maximum is 6 players.');
-      return notify('Could not join room. Please retry.');
-    }
+    // A whole-room transaction can see null on its first invocation even after a
+    // successful room read; returning undefined aborts the join with no useful error.
+    // For this casual private-room game use one atomic multi-location update instead.
+    // This is simpler and reliably works with the prototype RTDB room rules.
+    const initial=(await ref.once('value')).val();
+    if(!initial)return notify('Room '+code+' does not exist. Ask the host for a new link.');
+    if(initial.players?.[uid]){listenTo(code);return;}
+    if(initial.status!=='lobby')return notify('This game has already started. Ask for a new room.');
+    const currentOrder=Array.isArray(initial.order)?initial.order:Object.values(initial.order||{});
+    if(currentOrder.length>=6)return notify('Room is full (maximum 6 players).');
+    const position=currentOrder.length;
+    const updates={};
+    updates['players/'+uid]={name:nickname,joinedAt:Date.now()};
+    updates['order/'+position]=uid;
+    // In Firebase RTDB update() writes both locations in one atomic request.
+    await ref.update(updates);
+    const after=(await ref.once('value')).val();
+    if(!after?.players?.[uid])return notify('Join was not saved. Please retry.');
     listenTo(code);
-  }catch(err){console.error('Join room failed',err);notify('Could not join: '+(err?.message||'Firebase error'));}
+  }catch(err){
+    console.error('Koora UNO join failed',err);
+    if(err?.code==='PERMISSION_DENIED'||err?.code==='permission_denied'){
+      notify('Firebase permission denied. Check Realtime Database Rules and Anonymous Authentication.');
+    }else{
+      notify('Could not join room: '+(err?.message||'Unknown Firebase error'));
+    }
+  }
 }
 async function updateRoom(change){
   if(awaitingMove)return;
