@@ -7,6 +7,7 @@
   <title>Koora UNO — Football Card Game</title>
   <style>
     :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;color:#f3f6ff;background:#0b1120;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#18345b 0%,#0b1120 55%)}button,input{font:inherit}button{cursor:pointer;border:0}button:disabled{cursor:not-allowed;opacity:.4}.shell{max-width:1180px;margin:auto;padding:24px 18px 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:23px}.logo{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:900;letter-spacing:-1px}.logo-mark{width:45px;height:45px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#2dd4bf,#2563eb);font-size:24px}.sub{color:#91a3c2;font-size:13px}.panel{background:#141f35;border:1px solid #293955;border-radius:19px;padding:22px;box-shadow:0 14px 45px #0002}.intro{max-width:650px;margin:35px auto;text-align:center}.intro h1{font-size:clamp(29px,5vw,50px);letter-spacing:-2px;margin:0 0 12px}.intro p{color:#b5c4dc;line-height:1.7}.stack{display:grid;gap:14px}.field{background:#0c172a;border:1px solid #3c4d6b;color:white;padding:13px 15px;border-radius:12px;width:100%;outline:none}.field:focus{border-color:#38bdf8}.btn{background:#2dd4bf;color:#041923;border-radius:12px;padding:12px 17px;font-weight:800;transition:transform .12s,filter .12s}.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.08)}.btn.secondary{background:#263752;color:#e9f2ff}.btn.danger{background:#7f263b;color:#fff}.btn.small{padding:8px 11px;font-size:12px}.actions{display:flex;gap:10px;flex-wrap:wrap}.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}.stat{background:#0d192c;border:1px solid #253751;padding:12px;border-radius:12px}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#203855;color:#b9deff;font-size:12px;font-weight:700}.badge.turn{background:#064e3b;color:#a7f3d0}.muted{color:#99aac3}.players{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}.player{border:1px solid #2b4061;background:#101c31;border-radius:14px;padding:13px}.player.active{border-color:#2dd4bf;box-shadow:inset 0 0 0 1px #2dd4bf}.tablearea{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;justify-items:center;gap:15px;background:radial-gradient(ellipse,#183a45,#12263b 60%,#102035);padding:23px;border-radius:22px;border:1px solid #295364;margin:16px 0}.hand{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:12px}.game-card{position:relative;aspect-ratio: .69;border-radius:14px;overflow:hidden;border:2px solid #4a5f80;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:10px 7px;background:#1d3351;color:white;box-shadow:0 8px 17px #0005;min-width:0;text-align:center}.game-card.club{background:linear-gradient(155deg,#14385e,#0b1729)}.game-card.nationality{background:linear-gradient(155deg,#16704f,#123326)}.game-card.manager{background:linear-gradient(155deg,#67439a,#251b48)}.game-card.trophy{background:linear-gradient(155deg,#916425,#342311)}.game-card.achievement{background:linear-gradient(155deg,#187585,#123848)}.game-card.action{background:linear-gradient(155deg,#a53145,#421527)}.game-card.clickable:hover{transform:translateY(-7px);border-color:#2dd4bf}.game-card:disabled{opacity:.5}.game-card .type{font-size:9px;text-transform:uppercase;letter-spacing:1.3px;opacity:.85;font-weight:850}.game-card .art{width:70%;height:51%;object-fit:contain;filter:drop-shadow(0 3px 6px #0006)}.game-card .symbol{display:grid;place-items:center;font-size:42px;height:51%}.game-card .name{font-size:12px;font-weight:850;line-height:1.2;overflow-wrap:anywhere}.game-card .fallback{font-size:36px;display:none;align-items:center;justify-content:center;height:51%}.game-card .art.failed{display:none}.game-card .fallback.show{display:flex}.center-card{width:162px;max-width:100%;font-size:1.15em}.center-card .name{font-size:15px}.center-card .type{font-size:11px}.center-card .symbol{font-size:54px}.section-heading{font-size:17px;font-weight:850;margin:22px 0 12px}.note{font-size:12px;line-height:1.6;color:#a2b4ce}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e8fff8;color:#10362b;border-radius:12px;padding:12px 17px;font-size:13px;box-shadow:0 15px 45px #0009;z-index:99;max-width:92vw}.hidden{display:none!important}.flex-between{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.wait{font-size:22px;margin:5px 0}.room-code{font-size:26px;letter-spacing:4px;font-weight:900}.footer{color:#7084a5;font-size:12px;margin-top:27px;text-align:center}.deck-back{border:2px dashed #68819d;padding:15px;border-radius:13px;text-align:center;color:#bacde5}.rules{margin-top:20px;text-align:left;font-size:13px;line-height:1.7}.rules li{margin:5px 0}.divider{border:0;border-top:1px solid #283b55;margin:16px 0}@media(max-width:650px){.tablearea{grid-template-columns:1fr 1fr}.tablearea .middle{grid-column:1/-1;grid-row:1}.center-card{width:140px}.hand{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.game-card{padding:7px 4px}.game-card .name{font-size:10px}.shell{padding:14px 11px 38px}.panel{padding:15px}.two{grid-template-columns:1fr}}@media(min-width:651px){.hand{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
+  .deck-picker{margin-top:10px;border-top:1px solid #293955;padding-top:20px}.deck-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.deck-group{margin-top:14px}.deck-group summary{cursor:pointer;padding:12px;background:#0d192c;border:1px solid #2b4061;border-radius:12px;font-weight:800}.deck-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:10px}.deck-option{display:flex;align-items:center;gap:9px;background:#102039;border:1px solid #304762;border-radius:11px;padding:9px;text-align:left;min-width:0;cursor:pointer;color:#e8f4ff}.deck-option.selected{border-color:#2dd4bf;background:#123b3e}.deck-option img{width:34px;height:34px;object-fit:contain;flex-shrink:0}.deck-option .label-text{min-width:0;font-size:12px;line-height:1.2;overflow-wrap:anywhere}.deck-option .check{font-size:17px;flex-shrink:0}.deck-option:focus-visible{outline:3px solid #2dd4bf}.deck-help{color:#b4c6df;font-size:12px;line-height:1.5}.selection-alert{color:#fbbf24;font-weight:700;font-size:12px}
   </style>
 </head>
 <body>
@@ -116,6 +117,20 @@ const CARD_TEMPLATES = [...CLUBS,...NATIONALITIES,...MANAGERS,...TROPHIES,...ACH
 if(CARD_TEMPLATES.length!==70) throw Error(`Incorrect deck size: ${CARD_TEMPLATES.length}`);
 const ALL_CARDS = CARD_TEMPLATES.map((c,i)=>({...c,id:'card-'+i}));
 
+// The host can choose any subset of the 70 physical cards before the match.
+// Individual IDs keep duplicate trophy/action cards distinct.
+function selectedDeckIds(s){
+  if(s.selectedCards===undefined || s.selectedCards===null)return ALL_CARDS.map(c=>c.id);
+  if(s.selectedCards==='none')return [];
+  const selected=new Set(Array.isArray(s.selectedCards)?s.selectedCards:Object.values(s.selectedCards||{}));
+  return ALL_CARDS.filter(c=>selected.has(c.id)).map(c=>c.id);
+}
+function deckProblem(s){
+  const ids=selectedDeckIds(s),minimum=s.order.length*7+1;
+  if(ids.length<minimum)return `Select at least ${minimum} cards for ${s.order.length} players (7 each + 1 starting card). Currently ${ids.length} selected.`;
+  if(!ids.some(id=>cardById(id)?.type==='club'))return 'Select at least one club card for the starting table card.';
+  return '';
+}
 // ===================== FAIR SHUFFLING =====================
 function randomInt(max){ // Rejection sampling prevents modulo bias.
   if(!Number.isInteger(max)||max<1||max>4294967296) throw Error('Bad random bound');
@@ -196,7 +211,9 @@ function applyPlay(s,id,cardId,answer){
 }
 function freshMatch(s){
   if(s.order.length<2)throw Error('At least 2 players required');
-  const shuffled=shuffleCards(ALL_CARDS.map(c=>c.id));
+  const problem=deckProblem(s);
+  if(problem)throw Error(problem);
+  const shuffled=shuffleCards(selectedDeckIds(s));
   s.hands={};for(const id of s.order)s.hands[id]=[];
   for(let j=0;j<7;j++)for(const id of s.order)s.hands[id].push(shuffled.pop());
   let ix=shuffled.findIndex(id=>cardById(id)?.type==='club');
@@ -345,7 +362,44 @@ function cardHTML(id,{click=false,center=false}={}){
   return `<button type="button" class="game-card ${c.type} ${enabled?'clickable':''} ${center?'center-card':''}" ${enabled?`data-play="${c.id}"`: 'disabled'} aria-label="${escapeHtml(c.name)}"><span class="type">${typeLabel}</span>${art}<span class="name">${escapeHtml(c.name)}</span></button>`;
 }
 function homeHTML(){return `<div class="intro"><h1>Football knowledge.<br><span style="color:#2dd4bf">One card at a time.</span></h1><p>Connect football clubs, countries, managers and trophies. Say a player who matches both cards. Your friends judge the answer, while the website handles the deck and turns.</p><div class="panel stack" style="text-align:left;margin-top:22px"><label class="sub" for="nickname">Your nickname</label><input class="field" id="nickname" maxlength="22" placeholder="Enter a name" value="${escapeHtml(nickname)}"/><div class="actions"><button class="btn" id="createBtn">Create online room</button><button class="btn secondary" id="practiceBtn">Try solo practice</button></div><hr class="divider"><div class="stat stack"><b>📱 Offline pass-and-play (no server)</b><p class="note" style="margin:0">Play with 2–6 friends on one phone or computer. Pass the device between turns; hands stay hidden.</p><label class="sub" for="offlineNames">Player names (comma separated)</label><input class="field" id="offlineNames" value="Player 1, Player 2, Player 3" maxlength="160" placeholder="Ali, Sam, Noor"/><button class="btn" id="offlineBtn">Start offline game</button></div><hr class="divider"><label class="sub" for="roomCodeInput">Join a friend's room</label><div class="actions"><input class="field" style="flex:1;min-width:140px" id="roomCodeInput" maxlength="6" placeholder="Room code" value="${escapeHtml(codeFromURL())}"/><button class="btn secondary" id="joinBtn">Join</button></div>${!HAS_FIREBASE?'<p class="note">⚠️ Multiplayer setup needed: add your Firebase project configuration in this HTML file. Practice mode works immediately.</p>':''}</div><div class="rules"><strong>Quick rules</strong><ol><li>Everyone begins with seven cards. The host starts a room of 2–6 players.</li><li>Play a card and say a footballer connecting it to the current card. Friends decide if the answer is valid.</li><li>Nationality → nationality is not allowed.</li><li>Red Card skips the next player. +2 makes the next player draw two and skip (configurable house rule).</li><li>If you cannot play, draw one card and pass. First to empty their hand wins.</li></ol></div></div>`;}
-function lobbyHTML(){const isHost=room.host===uid;return `<div class="panel stack"><div class="flex-between"><div><div class="sub">ONLINE ROOM</div><div class="room-code">${escapeHtml(room.code)}</div></div><div class="actions"><button class="btn secondary small" id="copyBtn">Copy invite link</button><button class="btn secondary small" id="leaveBtn">Leave screen</button></div></div><p class="muted">Invite friends to join using this code or the shared link. ${room.order.length}/6 players connected.</p><div class="players">${room.order.map(id=>`<div class="player"><b>👤 ${escapeHtml(room.players[id]?.name)}</b><div class="sub">${id===room.host?'Host':'Player'}</div></div>`).join('')}</div><div class="actions">${isHost?`<button class="btn" id="startBtn" ${room.order.length<2?'disabled':''}>Shuffle & deal 7 cards</button>`:'<span class="badge">Waiting for host to start</span>'}</div><p class="note">Each game reshuffles all 70 cards. The starting table card is always a club.</p></div>`;}
+function deckPickerHTML(){
+  const selected=new Set(selectedDeckIds(room)),count=selected.size,problem=deckProblem(room);
+  const groups=[['club','⚽ Clubs'],['nationality','🌍 Nationalities'],['manager','🧑‍🏫 Managers'],['trophy','🏆 Trophy winners'],['achievement','🥇 Individual achievements'],['action','🟥 Action cards']];
+  return `<section class="deck-picker"><h3 style="margin:0 0 9px">Choose cards for this room</h3><p class="deck-help">Host-only: choose which physical cards enter the shuffle. Each player still receives 7 RANDOM cards. Changes are shared with everyone in the lobby.</p>
+    <div class="flex-between"><b id="deckCount">${count} / 70 selected</b><span class="badge">${room.order.length} players · minimum ${room.order.length*7+1} cards</span></div>
+    <div class="deck-controls" style="margin-top:10px"><button class="btn secondary small" id="selectAllBtn">Select all 70</button><button class="btn secondary small" id="clubsOnlyBtn">Only clubs</button><button class="btn secondary small" id="clearDeckBtn">Clear selection</button></div>
+    ${problem?`<div class="selection-alert" style="margin-top:10px">⚠️ ${escapeHtml(problem)}</div>`:'<p class="deck-help">✅ This deck can be dealt to the current players.</p>'}
+    ${groups.map(([type,title])=>{const cards=ALL_CARDS.filter(c=>c.type===type),num=cards.filter(c=>selected.has(c.id)).length;
+      return `<details class="deck-group"><summary>${title} — ${num}/${cards.length}</summary><div class="deck-options">${cards.map(c=>{
+        const on=selected.has(c.id);const art=c.image?`<img src="${escapeHtml(c.image)}" loading="lazy" alt="" onerror="this.style.display='none'">`:`<span style="font-size:24px">${escapeHtml(c.fallback)}</span>`;
+        return `<button type="button" class="deck-option ${on?'selected':''}" data-deck-card="${c.id}" aria-pressed="${on}"><span class="check">${on?'☑':'☐'}</span>${art}<span class="label-text">${escapeHtml(c.name)}</span></button>`;
+      }).join('')}</div></details>`;}).join('')}
+  </section>`;
+}
+function lobbyHTML(){const isHost=room.host===uid,problem=deckProblem(room),count=selectedDeckIds(room).length;
+  return `<div class="panel stack"><div class="flex-between"><div><div class="sub">ONLINE ROOM</div><div class="room-code">${escapeHtml(room.code)}</div></div><div class="actions"><button class="btn secondary small" id="copyBtn">Copy invite link</button><button class="btn secondary small" id="leaveBtn">Leave screen</button></div></div>
+    <p class="muted">Invite friends using this code or the link. ${room.order.length}/6 players connected.</p>
+    <div class="players">${room.order.map(id=>`<div class="player"><b>👤 ${escapeHtml(room.players[id]?.name)}</b><div class="sub">${id===room.host?'Host':'Player'}</div></div>`).join('')}</div>
+    <div class="actions">${isHost?`<button class="btn" id="startBtn" ${room.order.length<2||problem?'disabled':''}>Shuffle ${count} cards & deal 7 each</button>`:'<span class="badge">Waiting for host to start</span>'}</div>
+    ${isHost?deckPickerHTML():`<p class="note">The host has selected <b>${count}</b> cards for the next match. Your cards will be dealt randomly after the host starts.</p>`}
+    <p class="note">Starting table card is always a club. Card selection changes only the deck, never anyone's private hand.</p>
+  </div>`;
+}
+async function changeCardSelection(next){
+  await updateRoom(s=>{
+    if(s.host!==uid||s.status!=='lobby')return 'Only the host can edit cards before starting';
+    const current=new Set(selectedDeckIds(s));
+    if(next.mode==='all')s.selectedCards=ALL_CARDS.map(c=>c.id);
+    else if(next.mode==='clubs')s.selectedCards=ALL_CARDS.filter(c=>c.type==='club').map(c=>c.id);
+    else if(next.mode==='clear')s.selectedCards='none';
+    else if(next.mode==='toggle'){
+      if(!cardById(next.id))return 'Unknown card';
+      if(current.has(next.id))current.delete(next.id);else current.add(next.id);
+      const ids=ALL_CARDS.filter(c=>current.has(c.id)).map(c=>c.id);
+      s.selectedCards=ids.length?ids:'none';
+    }
+  });
+}
 function gameHTML(){
   const names=room.order.map((id,i)=>({id,seat:i,p:room.players[id]}));const myHand=room.hands?.[uid]||[];
   const turnId=room.order[room.turn];const winner=room.players?.[room.winner]?.name;
@@ -366,7 +420,11 @@ function render(){
   $('#revealBtn')?.addEventListener('click',()=>{offlineReveal=true;render();});
   $('#joinBtn')?.addEventListener('click',()=>joinRoom().catch(e=>notify(e.message)));
   $('#roomCodeInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')$('#joinBtn').click();});
-  $('#startBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.host!==uid||s.status!=='lobby')return 'Only the host can start';freshMatch(s);}));
+  $('#startBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.host!==uid||s.status!=='lobby')return 'Only the host can start';const problem=deckProblem(s);if(problem)return problem;freshMatch(s);}));
+  $('#selectAllBtn')?.addEventListener('click',()=>changeCardSelection({mode:'all'}));
+  $('#clubsOnlyBtn')?.addEventListener('click',()=>changeCardSelection({mode:'clubs'}));
+  $('#clearDeckBtn')?.addEventListener('click',()=>changeCardSelection({mode:'clear'}));
+  document.querySelectorAll('[data-deck-card]').forEach(el=>el.addEventListener('click',()=>changeCardSelection({mode:'toggle',id:el.dataset.deckCard})));
   $('#rematchBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.host!==uid&& !practice && !offlineMode)return 'Only the host can restart';freshMatch(s);}));
   $('#drawBtn')?.addEventListener('click',()=>updateRoom(s=>{if(s.order[s.turn]!==uid||s.status!=='playing')return 'Not your turn';const drawn=drawOne(s,uid);nextTurn(s);s.message=drawn?s.players[uid].name+' drew one card and passed.':'Draw pile is empty. Turn passed.';}));
   $('#demoNextBtn')?.addEventListener('click',simulateDemoTurn);
